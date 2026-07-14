@@ -1,0 +1,5 @@
+2026-07-14 16:49:10 | Usuario: admin | Operación: Crear paciente: juan lopez
+2026-07-14 16:49:19 | Usuario: admin | Operación: Buscar paciente: 1
+2026-07-14 16:49:55 | Usuario: admin | Operación: Modificar paciente: 1
+2026-07-14 16:50:03 | Usuario: admin | Operación: Buscar paciente: 1
+2026-07-14 16:50:12 | Usuario: admin | Operación: Listar pacientes

@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "dni": "3874252525",
+        "nombre": "juan",
+        "apellido": "lopez",
+        "edad": 32123123,
+        "telefono": "35",
+        "obra_social": "ips"
+    }
+]
