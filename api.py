@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pydantic import BaseModel
-import json
+import json, secrets
 import os
 
 #Creamos nuestra aplicació
@@ -11,7 +11,15 @@ app = FastAPI()
 secutity = HTTPBearer()
 
 #Token
-TOKEN_VALIDO= "hospital-token-2024"
+if os.path.exists("token.txt"):
+    with open("token.txt", "r") as f:
+        TOKEN_VALIDO = f.read().strip()
+else:
+    TOKEN_VALIDO = secrets.token_hex(32)
+    with open("token.txt", "w") as f:
+        f.write(TOKEN_VALIDO)
+
+print(f"Token actual: {TOKEN_VALIDO}")
 
 #Modelos pydantic
 
@@ -76,6 +84,46 @@ def guardar_internaciones(internaciones):
     with open("internaciones.json", "w") as f:
         json.dump(internaciones, f, indent=4)
 
+# Obtener ids
+def obtener_proximo_id_paciente():
+    """Calcula el próximo ID para paciente"""
+    pacientes = cargar_pacientes()
+    if not pacientes:
+        return 1
+    
+    max_id = 0
+    for p in pacientes:
+        if p["id"] > max_id:
+            max_id = p["id"]
+    
+    return max_id + 1
+
+def obtener_proximo_id_medico():
+    """Calcula el próximo ID para médico"""
+    medicos = cargar_medicos()
+    if not medicos:
+        return 1
+    
+    max_id = 0
+    for m in medicos:
+        if m["id"] > max_id:
+            max_id = m["id"]
+    
+    return max_id + 1
+
+def obtener_proximo_id_internacion():
+    """Calcula el próximo ID para internación"""
+    internaciones = cargar_internaciones()
+    if not internaciones:
+        return 1
+    
+    max_id = 0
+    for i in internaciones:
+        if i["id"] > max_id:
+            max_id = i["id"]
+    
+    return max_id + 1        
+
 def verificar_token(credentials: HTTPAuthorizationCredentials = Depends(secutity)):
     token = credentials.credentials
     if token != TOKEN_VALIDO:
@@ -99,9 +147,11 @@ def crear_paciente(paciente: Paciente, token: str = Depends(verificar_token)):
     if paciente.edad <= 0:
         raise HTTPException(status_code=400, detail="La edad debe ser mayor a 0")
     
-    pacientes.append(paciente.model_dump())
+    paciente_dict = paciente.model_dump()
+    paciente_dict["id"] = obtener_proximo_id_paciente()
+    pacientes.append(paciente_dict)
     guardar_pacientes(pacientes)
-    return {"mensaje": "Paciente creado exitosamente", "paciente": paciente}
+    return {"mensaje": "Paciente creado exitosamente", "paciente": paciente_dict}
 
 #GET pacientes
 @app.get("/pacientes")
@@ -161,10 +211,12 @@ def crear_medico(medico: Medico, token: str = Depends(verificar_token)):
     if not medico.matricula or not medico.especialidad:
         raise HTTPException(status_code=400, detail="LA matrícula y la especialidad son obligatorias")
     
-    medicos.append(medico.model_dump())
+    medico_dict = medico.model_dump()
+    medico_dict["id"] = obtener_proximo_id_medico()
+    medicos.append(medico_dict)
     guardar_medicos(medicos)
 
-    return {"mensaje": "Médico creado exitosamente", "medico": medico}
+    return {"mensaje": "Médico creado exitosamente", "medico": medico_dict}
 
 #GET médicos
 @app.get("/medicos")
@@ -238,10 +290,12 @@ def crear_internacion(internacion: Internacion, token: str = Depends(verificar_t
     if internacion.habitacion <= 0:
         raise HTTPException(status_code=400, detail="Habitación debe ser un número positivo")
     
-    internaciones.append(internacion.model_dump())
+    internacion_dict = internacion.model_dump()
+    internacion_dict["id"] = obtener_proximo_id_internacion()
+    internaciones.append(internacion_dict)
     guardar_internaciones(internaciones)
     
-    return {"mensaje": "Internación creada exitosamente", "internacion": internacion}
+    return {"mensaje": "Internación creada exitosamente", "internacion": internacion_dict}
 
 #GET internaciones
 @app.get("/internaciones")

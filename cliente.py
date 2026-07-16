@@ -6,7 +6,8 @@ from datetime import datetime
 URL_BASE = "http://localhost:8000"
 
 # Token para autenticación
-TOKEN = "hospital-token-2024"
+with open("token.txt", "r") as f:
+    TOKEN = f.read().strip()
 
 # Headers con token
 HEADERS = {
@@ -16,7 +17,7 @@ HEADERS = {
 #REgistrar logs
 def registrar_log(usuario, operacion):
     with open("logs.txt", "a") as archivo:
-        fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        fecha = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         log = f"{fecha} | Usuario: {usuario} | Operación: {operacion}\n"
         archivo.write(log)
 
@@ -25,7 +26,6 @@ def registrar_log(usuario, operacion):
 def alta_paciente():
     try:
         print("\n--- ALTA DE PACIENTE ---")
-        id_paciente = int(input("ID: "))
         dni = input("DNI: ")
         nombre = input("Nombre: ")
         apellido = input("Apellido: ")
@@ -34,7 +34,7 @@ def alta_paciente():
         obra_social = input("Obra social: ")
         
         datos = {
-            "id": id_paciente,
+            "id": 0,
             "dni": dni,
             "nombre": nombre,
             "apellido": apellido,
@@ -46,12 +46,12 @@ def alta_paciente():
         respuesta = requests.post(f"{URL_BASE}/pacientes", json=datos, headers=HEADERS)
         
         if respuesta.status_code == 200:
-            print("✓ Paciente creado exitosamente")
+            print("Paciente creado exitosamente")
             registrar_log("admin", f"Crear paciente: {nombre} {apellido}")
         else:
-            print(f"✗ Error: {respuesta.json().get('detail', 'Error desconocido')}")
+            print(f"Ocurrió un error inesperado: {respuesta.json().get('detail', 'Error desconocido')}")
     except Exception as e:
-        print(f"✗ Error: {str(e)}")
+        print(f"Ocurrió un error inesperado: {str(e)}")
 
 #Listado pcientes
 def listar_pacientes():
@@ -70,9 +70,9 @@ def listar_pacientes():
                     print(f"ID: {p['id']} | {p['nombre']} {p['apellido']} | DNI: {p['dni']}")
             registrar_log("admin", "Listar pacientes")
         else:
-            print("✗ Error al obtener pacientes")
+            print(f"Error al obtener pacientes. Código de estado: {respuesta.status_code}")
     except Exception as e:
-        print(f"✗ Error: {str(e)}")
+        print(f"Ocurrió un error inesperado: {str(e)}")
 
 #Buscar paciente
 def buscar_paciente():
@@ -93,9 +93,9 @@ def buscar_paciente():
             print(f"Obra social: {p['obra_social']}")
             registrar_log("admin", f"Buscar paciente: {id_paciente}")
         else:
-            print("✗ Paciente no encontrado")
+            print(f"Paciente no encontrado.Código de estado: {respuesta.status_code}")
     except Exception as e:
-        print(f"✗ Error: {str(e)}")
+        print(f"Ocurrió un error inesperado: {str(e)}")
 
 #modificar paciente
 def modificar_paciente():
@@ -123,12 +123,12 @@ def modificar_paciente():
         respuesta = requests.put(f"{URL_BASE}/pacientes/{id_paciente}", json=datos, headers=HEADERS)
         
         if respuesta.status_code == 200:
-            print("✓ Paciente actualizado exitosamente")
+            print("Paciente actualizado exitosamente")
             registrar_log("admin", f"Modificar paciente: {id_paciente}")
         else:
-            print(f"✗ Error: {respuesta.json().get('detail', 'Error desconocido')}")
+            print(f"Ocurrió un error inesperado: {respuesta.json().get('detail', 'Error desconocido')}")
     except Exception as e:
-        print(f"✗ Error: {str(e)}")
+        print(f"Ocurrió un error inesperado: {str(e)}")
 
 #Eliminar pciente
 def eliminar_paciente():
@@ -144,12 +144,12 @@ def eliminar_paciente():
         respuesta = requests.delete(f"{URL_BASE}/pacientes/{id_paciente}", headers=HEADERS)
         
         if respuesta.status_code == 200:
-            print("✓ Paciente eliminado exitosamente")
+            print("Paciente eliminado exitosamente")
             registrar_log("admin", f"Eliminar paciente: {id_paciente}")
         else:
-            print(f"✗ Error: {respuesta.json().get('detail', 'Error desconocido')}")
+            print(f"Ocurrió un error inesperado: {respuesta.json().get('detail', 'Error desconocido')}")
     except Exception as e:
-        print(f"✗ Error: {str(e)}")
+        print(f"Ocurrió un error inesperado: {str(e)}")
 
 #Menu pacientes
 def menu_pacientes():
@@ -184,7 +184,6 @@ def menu_pacientes():
 def alta_medico():
     try:
         print("\n--- ALTA DE MÉDICO ---")
-        id_medico = int(input("ID: "))
         matricula = input("Matrícula: ")
         nombre = input("Nombre: ")
         apellido = input("Apellido: ")
@@ -192,7 +191,7 @@ def alta_medico():
         telefono = input("Teléfono: ")
         
         datos = {
-            "id": id_medico,
+            "id": 0,
             "matricula": matricula,
             "nombre": nombre,
             "apellido": apellido,
@@ -203,12 +202,12 @@ def alta_medico():
         respuesta = requests.post(f"{URL_BASE}/medicos", json=datos, headers=HEADERS)
         
         if respuesta.status_code == 200:
-            print("✓ Médico creado exitosamente")
+            print("Médico creado exitosamente")
             registrar_log("admin", f"Crear médico: {nombre} {apellido}")
         else:
-            print(f"✗ Error: {respuesta.json().get('detail', 'Error desconocido')}")
+            print(f"Ocurrió un error inesperado: {respuesta.json().get('detail', 'Error desconocido')}")
     except Exception as e:
-        print(f"✗ Error: {str(e)}")
+        print(f"Ocurrió un error inesperado: {str(e)}")
 
 #Listar medicocs
 def listar_medicos():
@@ -227,9 +226,9 @@ def listar_medicos():
                     print(f"ID: {m['id']} | {m['nombre']} {m['apellido']} | Especialidad: {m['especialidad']}")
             registrar_log("admin", "Listar médicos")
         else:
-            print("✗ Error al obtener médicos")
+            print(f"Error al obtener médicos. Código de estado: {respuesta.status_code}")
     except Exception as e:
-        print(f"✗ Error: {str(e)}")
+        print(f"Ocurrió un error inesperado: {str(e)}")
 
 #Buecar medico
 def buscar_medico():
@@ -249,9 +248,9 @@ def buscar_medico():
             print(f"Teléfono: {m['telefono']}")
             registrar_log("admin", f"Buscar médico: {id_medico}")
         else:
-            print("✗ Médico no encontrado")
+            print(f"Médico no encontrado. Código de estado: {respuesta.status_code}")
     except Exception as e:
-        print(f"✗ Error: {str(e)}")
+        print(f"Ocurrió un error inesperado: {str(e)}")
 
 #Modificar medico
 def modificar_medico():
@@ -277,12 +276,12 @@ def modificar_medico():
         respuesta = requests.put(f"{URL_BASE}/medicos/{id_medico}", json=datos, headers=HEADERS)
         
         if respuesta.status_code == 200:
-            print("✓ Médico actualizado exitosamente")
+            print("Médico actualizado exitosamente")
             registrar_log("admin", f"Modificar médico: {id_medico}")
         else:
-            print(f"✗ Error: {respuesta.json().get('detail', 'Error desconocido')}")
+            print(f"Ocurrió un error inesperado: {respuesta.json().get('detail', 'Error desconocido')}")
     except Exception as e:
-        print(f"✗ Error: {str(e)}")
+        print(f"Ocurrió un error inesperado: {str(e)}")
 
 #eliminar medico
 def eliminar_medico():
@@ -298,12 +297,12 @@ def eliminar_medico():
         respuesta = requests.delete(f"{URL_BASE}/medicos/{id_medico}", headers=HEADERS)
         
         if respuesta.status_code == 200:
-            print("✓ Médico eliminado exitosamente")
+            print("Médico eliminado exitosamente")
             registrar_log("admin", f"Eliminar médico: {id_medico}")
         else:
-            print(f"✗ Error: {respuesta.json().get('detail', 'Error desconocido')}")
+            print(f"Ocurrió un error inesperado: {respuesta.json().get('detail', 'Error desconocido')}")
     except Exception as e:
-        print(f"✗ Error: {str(e)}")
+        print(f"Ocurrió un error inesperado: {str(e)}")
 
 #Menu medicos
 def menu_medicos():
@@ -338,7 +337,6 @@ def menu_medicos():
 def alta_internacion():
     try:
         print("\n--- ALTA DE INTERNACIÓN ---")
-        id_internacion = int(input("ID: "))
         paciente_id = int(input("ID del paciente: "))
         medico_id = int(input("ID del médico: "))
         fecha_ingreso = input("Fecha de ingreso (YYYY-MM-DD): ")
@@ -347,7 +345,7 @@ def alta_internacion():
         estado = input("Estado (ej: Activa, Recuperación): ")
         
         datos = {
-            "id": id_internacion,
+            "id": 0,
             "paciente_id": paciente_id,
             "medico_id": medico_id,
             "fecha_ingreso": fecha_ingreso,
@@ -359,12 +357,12 @@ def alta_internacion():
         respuesta = requests.post(f"{URL_BASE}/internaciones", json=datos, headers=HEADERS)
         
         if respuesta.status_code == 200:
-            print("✓ Internación creada exitosamente")
+            print("Internación creada exitosamente")
             registrar_log("admin", f"Crear internación: ID {id_internacion}")
         else:
-            print(f"✗ Error: {respuesta.json().get('detail', 'Error desconocido')}")
+            print(f"Ocurrió un error inesperado: {respuesta.json().get('detail', 'Error desconocido')}")
     except Exception as e:
-        print(f"✗ Error: {str(e)}")
+        print(f"Ocurrió un error inesperado: {str(e)}")
 
 #Listar internacioens
 def listar_internaciones():
@@ -383,9 +381,9 @@ def listar_internaciones():
                     print(f"ID: {i['id']} | Paciente: {i['paciente_id']} | Médico: {i['medico_id']} | Estado: {i['estado']}")
             registrar_log("admin", "Listar internaciones")
         else:
-            print("✗ Error al obtener internaciones")
+            print(f"Error al obtener internaciones. Código de estado: {respuesta.status_code}")
     except Exception as e:
-        print(f"✗ Error: {str(e)}")
+        print(f"Ocurrió un error inesperado: {str(e)}")
 
 #Buecar internacion
 def buscar_internacion():
@@ -407,9 +405,9 @@ def buscar_internacion():
             print(f"Estado: {i['estado']}")
             registrar_log("admin", f"Buscar internación: {id_internacion}")
         else:
-            print("✗ Internación no encontrada")
+            print(f"Internación no encontrada. Código de estado: {respuesta.status_code}")
     except Exception as e:
-        print(f"✗ Error: {str(e)}")
+        print(f"Ocurrió un error inesperado: {str(e)}")
 
 #Modficar internacion
 def modificar_internacion():
@@ -437,12 +435,12 @@ def modificar_internacion():
         respuesta = requests.put(f"{URL_BASE}/internaciones/{id_internacion}", json=datos, headers=HEADERS)
         
         if respuesta.status_code == 200:
-            print("✓ Internación actualizada exitosamente")
+            print("Internación actualizada exitosamente")
             registrar_log("admin", f"Modificar internación: {id_internacion}")
         else:
-            print(f"✗ Error: {respuesta.json().get('detail', 'Error desconocido')}")
+            print(f"Ocurrió un error inesperado: {respuesta.json().get('detail', 'Error desconocido')}")
     except Exception as e:
-        print(f"✗ Error: {str(e)}")
+        print(f"Ocurrió un error inesperado: {str(e)}")
 
 #Eliminar internacion
 def eliminar_internacion():
@@ -458,12 +456,12 @@ def eliminar_internacion():
         respuesta = requests.delete(f"{URL_BASE}/internaciones/{id_internacion}", headers=HEADERS)
         
         if respuesta.status_code == 200:
-            print("✓ Internación eliminada exitosamente")
+            print("Internación eliminada exitosamente")
             registrar_log("admin", f"Eliminar internación: {id_internacion}")
         else:
-            print(f"✗ Error: {respuesta.json().get('detail', 'Error desconocido')}")
+            print(f"Ocurrió un error inesperado: {respuesta.json().get('detail', 'Error desconocido')}")
     except Exception as e:
-        print(f"✗ Error: {str(e)}")
+        print(f"Ocurrió un error inesperado: {str(e)}")
 
 #Menu internaciones
 def menu_internaciones():
@@ -497,7 +495,7 @@ def menu_internaciones():
 def menu_principal():
     while True:
         print("\n" + "="*25)
-        print("SISTEMA HOSPITALARIO")
+        print("SISTEMA HOSPITALARIO GRUPO 33")
         print("="*25)
         print("1 - Gestionar pacientes")
         print("2 - Gestionar médicos")

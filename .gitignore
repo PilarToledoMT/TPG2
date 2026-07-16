@@ -1,0 +1,19 @@
+#Archivos de python
+__pycache__
+*.py[cod]
+venv/
+env/
+.venv
+
+#Token, en este archivo se guarda el token de autenticación de la API, en el flujo en la primera ejecucion, el archivo no existe, pero se crea cuando se genera el primer token.
+token.txt
+
+#Logs, en este archivo se guardan los logs del sistema, en el flujo en la primera ejecucion, el archivo no existe, pero se crea cuando se genera la primeta ejecucion.
+logs.txt
+
+#IDE
+.vscode/
+
+# Archivos temporales
+*.tmp
+*.bak

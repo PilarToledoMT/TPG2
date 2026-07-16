@@ -3,3 +3,13 @@
 2026-07-14 16:49:55 | Usuario: admin | Operación: Modificar paciente: 1
 2026-07-14 16:50:03 | Usuario: admin | Operación: Buscar paciente: 1
 2026-07-14 16:50:12 | Usuario: admin | Operación: Listar pacientes
+15/07/2026 13:38:29 | Usuario: admin | Operación: Crear paciente: Maria Perez
+15/07/2026 13:38:41 | Usuario: admin | Operación: Buscar paciente: 1
+15/07/2026 13:38:50 | Usuario: admin | Operación: Listar pacientes
+15/07/2026 13:52:37 | Usuario: admin | Operación: Crear paciente: Luis Gomez
+15/07/2026 13:52:49 | Usuario: admin | Operación: Listar pacientes
+15/07/2026 13:58:10 | Usuario: admin | Operación: Crear paciente: Ariel Moya
+15/07/2026 13:58:16 | Usuario: admin | Operación: Listar pacientes
+15/07/2026 13:59:32 | Usuario: admin | Operación: Crear médico: Jorge Duarte
+15/07/2026 13:59:47 | Usuario: admin | Operación: Buscar médico: 1
+15/07/2026 13:59:53 | Usuario: admin | Operación: Listar médicos

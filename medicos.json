@@ -1,1 +1,10 @@
-[]
+[
+    {
+        "id": 1,
+        "matricula": "1012",
+        "nombre": "Jorge",
+        "apellido": "Duarte",
+        "especialidad": "Dermatologia",
+        "telefono": "3874757575"
+    }
+]

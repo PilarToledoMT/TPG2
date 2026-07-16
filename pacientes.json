@@ -7,5 +7,32 @@
         "edad": 32123123,
         "telefono": "35",
         "obra_social": "ips"
+    },
+    {
+        "id": 2,
+        "dni": "20222222",
+        "nombre": "Maria",
+        "apellido": "Perez",
+        "edad": 50,
+        "telefono": "3874787878",
+        "obra_social": "ips"
+    },
+    {
+        "id": 3,
+        "dni": "12789456",
+        "nombre": "Luis",
+        "apellido": "Gomez",
+        "edad": 40,
+        "telefono": "3874789456",
+        "obra_social": "SM"
+    },
+    {
+        "id": 4,
+        "dni": "13555666",
+        "nombre": "Ariel",
+        "apellido": "Moya",
+        "edad": 80,
+        "telefono": "3875898989",
+        "obra_social": "Boreal"
     }
 ]
