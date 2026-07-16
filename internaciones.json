@@ -1,1 +1,11 @@
-[]
+[
+    {
+        "id": 1,
+        "paciente_id": 2,
+        "medico_id": 3,
+        "fecha_ingreso": "2026-07-16",
+        "diagnostico": "Deshidrataci\u00f3n",
+        "habitacion": 5,
+        "estado": "Activa"
+    }
+]

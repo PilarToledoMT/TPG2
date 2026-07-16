@@ -14,6 +14,14 @@ HEADERS = {
     "Authorization": f"Bearer {TOKEN}"
 }
 
+#Valida int
+def pedir_numero(dato, mensaje_error):
+    while True:
+        try:
+            return int(input(dato))
+        except ValueError:
+            print(mensaje_error)
+
 #REgistrar logs
 def registrar_log(usuario, operacion):
     with open("logs.txt", "a") as archivo:
@@ -26,11 +34,11 @@ def registrar_log(usuario, operacion):
 def alta_paciente():
     try:
         print("\n--- ALTA DE PACIENTE ---")
-        dni = input("DNI: ")
+        dni = pedir_numero("DNI: ", "Error: el DNI debe ser un número")
         nombre = input("Nombre: ")
         apellido = input("Apellido: ")
-        edad = int(input("Edad: "))
-        telefono = input("Teléfono: ")
+        edad = pedir_numero("Edad: ", "Error: la edad debe ser un número")
+        telefono = pedir_numero("Teléfono: ", "Error: el teléfono debe ser un número")
         obra_social = input("Obra social: ")
         
         datos = {
@@ -49,9 +57,9 @@ def alta_paciente():
             print("Paciente creado exitosamente")
             registrar_log("admin", f"Crear paciente: {nombre} {apellido}")
         else:
-            print(f"Ocurrió un error inesperado: {respuesta.json().get('detail', 'Error desconocido')}")
+            print("Error: revisa los datos cargados")
     except Exception as e:
-        print(f"Ocurrió un error inesperado: {str(e)}")
+        print("Error inesperado")
 
 #Listado pcientes
 def listar_pacientes():
@@ -78,7 +86,7 @@ def listar_pacientes():
 def buscar_paciente():
     try:
         print("\n--- BUSCAR PACIENTE ---")
-        id_paciente = int(input("ID del paciente: "))
+        id_paciente = pedir_numero("ID: ", "Error: el ID debe ser un número")
         
         respuesta = requests.get(f"{URL_BASE}/pacientes/{id_paciente}")
         
@@ -101,13 +109,13 @@ def buscar_paciente():
 def modificar_paciente():
     try:
         print("\n--- MODIFICAR PACIENTE ---")
-        id_paciente = int(input("ID del paciente: "))
+        id_paciente = pedir_numero("ID: ", "Error: el ID debe ser un número")
         
+        dni = pedir_numero("DNI: ", "Error: el DNI debe ser un número")
         nombre = input("Nombre: ")
         apellido = input("Apellido: ")
-        edad = int(input("Edad: "))
-        telefono = input("Teléfono: ")
-        dni = input("DNI: ")
+        edad = pedir_numero("Edad: ", "Error: la edad debe ser un número")
+        telefono = pedir_numero("Teléfono: ", "Error: el teléfono debe ser un número")
         obra_social = input("Obra social: ")
         
         datos = {
@@ -126,7 +134,7 @@ def modificar_paciente():
             print("Paciente actualizado exitosamente")
             registrar_log("admin", f"Modificar paciente: {id_paciente}")
         else:
-            print(f"Ocurrió un error inesperado: {respuesta.json().get('detail', 'Error desconocido')}")
+            print("Error: revisa los datos cargados")
     except Exception as e:
         print(f"Ocurrió un error inesperado: {str(e)}")
 
@@ -134,7 +142,7 @@ def modificar_paciente():
 def eliminar_paciente():
     try:
         print("\n--- ELIMINAR PACIENTE ---")
-        id_paciente = int(input("ID del paciente: "))
+        id_paciente = pedir_numero("ID: ", "Error: el ID debe ser un número")
         
         confirmacion = input("¿Estás seguro? (s/n): ")
         if confirmacion.lower() != "s":
@@ -147,7 +155,7 @@ def eliminar_paciente():
             print("Paciente eliminado exitosamente")
             registrar_log("admin", f"Eliminar paciente: {id_paciente}")
         else:
-            print(f"Ocurrió un error inesperado: {respuesta.json().get('detail', 'Error desconocido')}")
+            print("Error al eliminar el paciente")
     except Exception as e:
         print(f"Ocurrió un error inesperado: {str(e)}")
 
@@ -184,11 +192,11 @@ def menu_pacientes():
 def alta_medico():
     try:
         print("\n--- ALTA DE MÉDICO ---")
-        matricula = input("Matrícula: ")
+        matricula = pedir_numero("Matrícula: ", "Error: la matrícula debe ser un número")
         nombre = input("Nombre: ")
         apellido = input("Apellido: ")
         especialidad = input("Especialidad: ")
-        telefono = input("Teléfono: ")
+        telefono = pedir_numero("Teléfono: ", "Error: el teléfono debe ser un número")
         
         datos = {
             "id": 0,
@@ -205,9 +213,9 @@ def alta_medico():
             print("Médico creado exitosamente")
             registrar_log("admin", f"Crear médico: {nombre} {apellido}")
         else:
-            print(f"Ocurrió un error inesperado: {respuesta.json().get('detail', 'Error desconocido')}")
+            print("Error: revisa los datos cargados")
     except Exception as e:
-        print(f"Ocurrió un error inesperado: {str(e)}")
+        print("Ocurrió un error inesperado")
 
 #Listar medicocs
 def listar_medicos():
@@ -234,7 +242,7 @@ def listar_medicos():
 def buscar_medico():
     try:
         print("\n--- BUSCAR MÉDICO ---")
-        id_medico = int(input("ID del médico: "))
+        id_medico = pedir_numero("ID: ", "Error: el ID debe ser un número")
         
         respuesta = requests.get(f"{URL_BASE}/medicos/{id_medico}")
         
@@ -256,13 +264,13 @@ def buscar_medico():
 def modificar_medico():
     try:
         print("\n--- MODIFICAR MÉDICO ---")
-        id_medico = int(input("ID del médico: "))
+        id_medico = pedir_numero("ID: ", "Error: el ID debe ser un número")
         
-        matricula = input("Matrícula: ")
+        matricula = pedir_numero("Matrícula: ", "Error: la matrícula debe ser un número")
         nombre = input("Nombre: ")
         apellido = input("Apellido: ")
         especialidad = input("Especialidad: ")
-        telefono = input("Teléfono: ")
+        telefono = pedir_numero("Teléfono: ", "Error: el teléfono debe ser un número")
         
         datos = {
             "id": id_medico,
@@ -279,7 +287,7 @@ def modificar_medico():
             print("Médico actualizado exitosamente")
             registrar_log("admin", f"Modificar médico: {id_medico}")
         else:
-            print(f"Ocurrió un error inesperado: {respuesta.json().get('detail', 'Error desconocido')}")
+            print("Error: revisa los datos cargados")
     except Exception as e:
         print(f"Ocurrió un error inesperado: {str(e)}")
 
@@ -287,8 +295,8 @@ def modificar_medico():
 def eliminar_medico():
     try:
         print("\n--- ELIMINAR MÉDICO ---")
-        id_medico = int(input("ID del médico: "))
-        
+        id_medico = pedir_numero("ID: ", "Error: el ID debe ser un número")
+
         confirmacion = input("¿Estás seguro? (s/n): ")
         if confirmacion.lower() != "s":
             print("Operación cancelada")
@@ -300,7 +308,7 @@ def eliminar_medico():
             print("Médico eliminado exitosamente")
             registrar_log("admin", f"Eliminar médico: {id_medico}")
         else:
-            print(f"Ocurrió un error inesperado: {respuesta.json().get('detail', 'Error desconocido')}")
+            print("Error al eliminar el médico")
     except Exception as e:
         print(f"Ocurrió un error inesperado: {str(e)}")
 
@@ -337,12 +345,12 @@ def menu_medicos():
 def alta_internacion():
     try:
         print("\n--- ALTA DE INTERNACIÓN ---")
-        paciente_id = int(input("ID del paciente: "))
-        medico_id = int(input("ID del médico: "))
+        paciente_id = pedir_numero("ID del paciente: ", "Error: el ID debe ser un número")
+        medico_id = pedir_numero("ID del médico: ", "Error: el ID debe ser un número")
         fecha_ingreso = input("Fecha de ingreso (YYYY-MM-DD): ")
         diagnostico = input("Diagnóstico: ")
-        habitacion = int(input("Número de habitación: "))
-        estado = input("Estado (ej: Activa, Recuperación): ")
+        habitacion = pedir_numero("Número de habitación: ", "Error: la habitación debe ser un número")
+        estado = input("Estado: (Activa/Recuperación): ")
         
         datos = {
             "id": 0,
@@ -358,9 +366,9 @@ def alta_internacion():
         
         if respuesta.status_code == 200:
             print("Internación creada exitosamente")
-            registrar_log("admin", f"Crear internación: ID {id_internacion}")
+            registrar_log("admin", f"Crear internación: estado {estado}")
         else:
-            print(f"Ocurrió un error inesperado: {respuesta.json().get('detail', 'Error desconocido')}")
+            print("Error: revisa los datos cargados")
     except Exception as e:
         print(f"Ocurrió un error inesperado: {str(e)}")
 
@@ -378,7 +386,7 @@ def listar_internaciones():
                 print("No hay internaciones registradas")
             else:
                 for i in internaciones:
-                    print(f"ID: {i['id']} | Paciente: {i['paciente_id']} | Médico: {i['medico_id']} | Estado: {i['estado']}")
+                    print(f"ID: {i['id']} | Paciente: {i['paciente_id']} | Médico: {i['medico_id']} | Habitación: {i['habitacion']} | Estado: {i['estado']}")
             registrar_log("admin", "Listar internaciones")
         else:
             print(f"Error al obtener internaciones. Código de estado: {respuesta.status_code}")
@@ -389,7 +397,7 @@ def listar_internaciones():
 def buscar_internacion():
     try:
         print("\n--- BUSCAR INTERNACIÓN ---")
-        id_internacion = int(input("ID de la internación: "))
+        id_internacion = pedir_numero("ID de la internación: ", "Error: el ID debe ser un número")
         
         respuesta = requests.get(f"{URL_BASE}/internaciones/{id_internacion}")
         
@@ -413,14 +421,14 @@ def buscar_internacion():
 def modificar_internacion():
     try:
         print("\n--- MODIFICAR INTERNACIÓN ---")
-        id_internacion = int(input("ID de la internación: "))
+        id_internacion = pedir_numero("ID de la internación: ", "Error: el ID debe ser un número")
         
-        paciente_id = int(input("ID del paciente: "))
-        medico_id = int(input("ID del médico: "))
+        paciente_id = pedir_numero("ID del paciente: ", "Error: el ID debe ser un número")
+        medico_id = pedir_numero("ID del médico: ", "Error: el ID debe ser un número")
         fecha_ingreso = input("Fecha de ingreso (YYYY-MM-DD): ")
         diagnostico = input("Diagnóstico: ")
-        habitacion = int(input("Número de habitación: "))
-        estado = input("Estado: ")
+        habitacion = pedir_numero("Número de habitación: ", "Error: la habitación debe ser un número")
+        estado = input("Estado: (Activa/Recuperación): ")
         
         datos = {
             "id": id_internacion,
@@ -438,7 +446,7 @@ def modificar_internacion():
             print("Internación actualizada exitosamente")
             registrar_log("admin", f"Modificar internación: {id_internacion}")
         else:
-            print(f"Ocurrió un error inesperado: {respuesta.json().get('detail', 'Error desconocido')}")
+            print("Error: revisa los datos cargados", {respuesta.status_code})
     except Exception as e:
         print(f"Ocurrió un error inesperado: {str(e)}")
 
@@ -446,7 +454,7 @@ def modificar_internacion():
 def eliminar_internacion():
     try:
         print("\n--- ELIMINAR INTERNACIÓN ---")
-        id_internacion = int(input("ID de la internación: "))
+        id_internacion = pedir_numero("ID de la internación: ", "Error: el ID debe ser un número")
         
         confirmacion = input("¿Estás seguro? (s/n): ")
         if confirmacion.lower() != "s":
@@ -459,7 +467,7 @@ def eliminar_internacion():
             print("Internación eliminada exitosamente")
             registrar_log("admin", f"Eliminar internación: {id_internacion}")
         else:
-            print(f"Ocurrió un error inesperado: {respuesta.json().get('detail', 'Error desconocido')}")
+            print("Error al eliminar la internación")
     except Exception as e:
         print(f"Ocurrió un error inesperado: {str(e)}")
 
@@ -494,14 +502,14 @@ def menu_internaciones():
 #Menu principal
 def menu_principal():
     while True:
-        print("\n" + "="*25)
+        print("\n" + "*"*29)
         print("SISTEMA HOSPITALARIO GRUPO 33")
-        print("="*25)
+        print("*"*29)
         print("1 - Gestionar pacientes")
         print("2 - Gestionar médicos")
         print("3 - Gestionar internaciones")
         print("4 - Salir")
-        print("="*25)
+        print("*"*29)
         
         opcion = input("Selecciona una opción: ")
         

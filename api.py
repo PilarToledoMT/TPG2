@@ -26,21 +26,21 @@ print(f"Token actual: {TOKEN_VALIDO}")
 #PAciente
 class Paciente(BaseModel):
     id: int
-    dni: str
+    dni: int
     nombre: str
     apellido: str
     edad: int
-    telefono: str
+    telefono: int
     obra_social: str
 
 #Médico
 class Medico(BaseModel):
     id: int
-    matricula: str
+    matricula: int
     nombre: str
     apellido: str
     especialidad: str
-    telefono: str
+    telefono: int
 
 #Internación
 class Internacion(BaseModel):
@@ -211,6 +211,9 @@ def crear_medico(medico: Medico, token: str = Depends(verificar_token)):
     if not medico.matricula or not medico.especialidad:
         raise HTTPException(status_code=400, detail="LA matrícula y la especialidad son obligatorias")
     
+    if not medico.nombre or not medico.apellido:
+        raise HTTPException(status_code=400, detail="El nombre y apellido son obligatorios")
+    
     medico_dict = medico.model_dump()
     medico_dict["id"] = obtener_proximo_id_medico()
     medicos.append(medico_dict)
@@ -241,6 +244,9 @@ def modificar_medico(id: int, medico_actualizado: Medico, token: str = Depends(v
     
     if not medico_actualizado.matricula or not medico_actualizado.especialidad:
         raise HTTPException(status_code=400, detail="Matrícula y especialidad son obligatorias")
+    
+    if not medico_actualizado.nombre or not medico_actualizado.apellido:
+        raise HTTPException(status_code=400, detail="El nombr1e y apellido son obligatorios")
     
     for i, medico in enumerate(medicos):
         if medico["id"] == id:
@@ -323,7 +329,7 @@ def modificar_internacion(id: int, internacion_actualizada: Internacion, token: 
     
     paciente_existe = False
     for p in pacientes:
-        if p["id"] == internacion.paciente_id:
+        if p["id"] == internacion_actualizada.paciente_id:
             paciente_existe = True
             break
     if not paciente_existe:
@@ -332,7 +338,7 @@ def modificar_internacion(id: int, internacion_actualizada: Internacion, token: 
     
     medico_existe = False
     for m in medicos:
-        if m["id"] == internacion.medico_id:
+        if m["id"] == internacion_actualizada.medico_id:
             medico_existe = True
             break
     if not medico_existe:

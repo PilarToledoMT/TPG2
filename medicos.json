@@ -1,10 +1,26 @@
 [
     {
         "id": 1,
-        "matricula": "1012",
-        "nombre": "Jorge",
-        "apellido": "Duarte",
-        "especialidad": "Dermatologia",
-        "telefono": "3874757575"
+        "matricula": 1234,
+        "nombre": "jose",
+        "apellido": "lopez",
+        "especialidad": "Medicina familiar",
+        "telefono": 3874575757
+    },
+    {
+        "id": 2,
+        "matricula": 4567,
+        "nombre": "ramon",
+        "apellido": "ramos",
+        "especialidad": "Dermatolog\u00eda",
+        "telefono": 3874757575
+    },
+    {
+        "id": 3,
+        "matricula": 5588,
+        "nombre": "dario",
+        "apellido": "cuellar",
+        "especialidad": "Oftalmolog\u00eda",
+        "telefono": 3874757575
     }
 ]

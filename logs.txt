@@ -13,3 +13,49 @@
 15/07/2026 13:59:32 | Usuario: admin | Operación: Crear médico: Jorge Duarte
 15/07/2026 13:59:47 | Usuario: admin | Operación: Buscar médico: 1
 15/07/2026 13:59:53 | Usuario: admin | Operación: Listar médicos
+16/07/2026 15:08:00 | Usuario: admin | Operación: Listar pacientes
+16/07/2026 15:08:15 | Usuario: admin | Operación: Listar médicos
+16/07/2026 15:11:17 | Usuario: admin | Operación: Crear internación: estado Activa
+16/07/2026 15:11:34 | Usuario: admin | Operación: Listar internaciones
+16/07/2026 15:23:03 | Usuario: admin | Operación: Crear paciente: luis moya
+16/07/2026 15:23:45 | Usuario: admin | Operación: Listar pacientes
+16/07/2026 16:39:31 | Usuario: admin | Operación: Crear paciente: juan perez
+16/07/2026 16:40:07 | Usuario: admin | Operación: Listar pacientes
+16/07/2026 16:40:36 | Usuario: admin | Operación: Crear paciente: maria lopez
+16/07/2026 16:40:44 | Usuario: admin | Operación: Listar pacientes
+16/07/2026 16:41:23 | Usuario: admin | Operación: Crear paciente: ariel moya
+16/07/2026 16:42:35 | Usuario: admin | Operación: Crear paciente: pedro gomez
+16/07/2026 16:44:39 | Usuario: admin | Operación: Crear paciente: ara cosat
+16/07/2026 16:44:45 | Usuario: admin | Operación: Listar pacientes
+16/07/2026 16:45:31 | Usuario: admin | Operación: Modificar paciente: 5
+16/07/2026 16:45:38 | Usuario: admin | Operación: Listar pacientes
+16/07/2026 16:46:27 | Usuario: admin | Operación: Eliminar paciente: 5
+16/07/2026 16:46:35 | Usuario: admin | Operación: Listar pacientes
+16/07/2026 16:47:54 | Usuario: admin | Operación: Crear médico: jose lopez
+16/07/2026 16:48:01 | Usuario: admin | Operación: Listar médicos
+16/07/2026 16:48:34 | Usuario: admin | Operación: Crear médico: ramon ramos
+16/07/2026 16:49:15 | Usuario: admin | Operación: Crear médico:  cuellar
+16/07/2026 16:49:43 | Usuario: admin | Operación: Listar médicos
+16/07/2026 17:00:17 | Usuario: admin | Operación: Crear médico: luis jaime
+16/07/2026 17:00:23 | Usuario: admin | Operación: Listar médicos
+16/07/2026 17:01:23 | Usuario: admin | Operación: Modificar médico: 3
+16/07/2026 17:01:29 | Usuario: admin | Operación: Listar médicos
+16/07/2026 17:02:01 | Usuario: admin | Operación: Eliminar médico: 4
+16/07/2026 17:02:05 | Usuario: admin | Operación: Listar médicos
+16/07/2026 17:09:48 | Usuario: admin | Operación: Crear internación: estado Activa
+16/07/2026 17:12:58 | Usuario: admin | Operación: Crear internación: estado Activa
+16/07/2026 17:13:06 | Usuario: admin | Operación: Listar internaciones
+16/07/2026 17:16:28 | Usuario: admin | Operación: Listar internaciones
+16/07/2026 17:17:30 | Usuario: admin | Operación: Listar internaciones
+16/07/2026 17:24:47 | Usuario: admin | Operación: Listar internaciones
+16/07/2026 17:27:41 | Usuario: admin | Operación: Buscar internación: 2
+16/07/2026 17:31:54 | Usuario: admin | Operación: Listar internaciones
+16/07/2026 17:34:25 | Usuario: admin | Operación: Listar internaciones
+16/07/2026 17:53:23 | Usuario: admin | Operación: Listar internaciones
+16/07/2026 17:53:57 | Usuario: admin | Operación: Modificar internación: 2
+16/07/2026 17:54:02 | Usuario: admin | Operación: Listar internaciones
+16/07/2026 17:54:26 | Usuario: admin | Operación: Eliminar internación: 2
+16/07/2026 17:54:33 | Usuario: admin | Operación: Listar internaciones
+16/07/2026 17:54:42 | Usuario: admin | Operación: Buscar internación: 1
+16/07/2026 17:54:54 | Usuario: admin | Operación: Buscar paciente: 1
+16/07/2026 17:55:08 | Usuario: admin | Operación: Buscar médico: 2

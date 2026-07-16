@@ -1,38 +1,38 @@
 [
     {
         "id": 1,
-        "dni": "3874252525",
+        "dni": 30123123,
         "nombre": "juan",
-        "apellido": "lopez",
-        "edad": 32123123,
-        "telefono": "35",
+        "apellido": "perez",
+        "edad": 45,
+        "telefono": 3874757575,
         "obra_social": "ips"
     },
     {
         "id": 2,
-        "dni": "20222222",
-        "nombre": "Maria",
-        "apellido": "Perez",
-        "edad": 50,
-        "telefono": "3874787878",
+        "dni": 32456456,
+        "nombre": "maria",
+        "apellido": "lopez",
+        "edad": 40,
+        "telefono": 3874787878,
         "obra_social": "ips"
     },
     {
         "id": 3,
-        "dni": "12789456",
-        "nombre": "Luis",
-        "apellido": "Gomez",
-        "edad": 40,
-        "telefono": "3874789456",
-        "obra_social": "SM"
+        "dni": 12363636,
+        "nombre": "ariel",
+        "apellido": "moya",
+        "edad": 70,
+        "telefono": 3874898989,
+        "obra_social": "boreal"
     },
     {
         "id": 4,
-        "dni": "13555666",
-        "nombre": "Ariel",
-        "apellido": "Moya",
-        "edad": 80,
-        "telefono": "3875898989",
-        "obra_social": "Boreal"
+        "dni": 13565656,
+        "nombre": "pedro",
+        "apellido": "gomez",
+        "edad": 40,
+        "telefono": 0,
+        "obra_social": "sm"
     }
 ]
